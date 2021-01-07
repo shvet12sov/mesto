@@ -12,5 +12,12 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 350px) {
+  .profile__button-edit {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 
 

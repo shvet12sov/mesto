@@ -7,3 +7,13 @@
   display: inline;
   padding: 0 18px 0 0;
 }
+
+@media screen and (max-width: 350px) {
+  .profile__name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 1.22;
+    text-align: center;
+  }
+}
