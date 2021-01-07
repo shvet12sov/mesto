@@ -18,3 +18,11 @@
 @import url('../blocks/profile/__button-edit/profile__button-edit.css');
 @import url('../blocks/profile/__description/profile__description.css');
 @import url('../blocks/profile/__button-add/profile__button-add.css');
+
+@import url('../blocks/places/places.css');
+@import url('../blocks/places/__items/places__items.css');
+@import url('../blocks/places/__item/places__item.css');
+@import url('../blocks/places/__image/places__image.css');
+@import url('../blocks/places/__name/places__name.css');
+@import url('../blocks/places/__like/places__like.css');
+@import url('../blocks/places/__wrapper/places__wrapper.css');
