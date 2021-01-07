@@ -1,0 +1,9 @@
+.profile__name {
+  font-size: 42px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.14;
+  margin: 0;
+  display: inline;
+  padding: 0 18px 0 0;
+}
