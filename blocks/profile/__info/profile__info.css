@@ -7,3 +7,9 @@
     padding-bottom: 36px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .profile__info {
+    max-width: 300px;
+  }
+}
