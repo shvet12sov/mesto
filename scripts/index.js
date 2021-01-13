@@ -2,8 +2,8 @@ let popup = document.querySelector('.popup');//
 let editButton = document.querySelector('.profile__button-edit');//
 let closeProfileButton = popup.querySelector('.popup__close');//
 let popupForm = popup.querySelector('.popup__container');
-let nameInput = popupForm.querySelector('.popup__input_name');//
-let descInput = popupForm.querySelector('.popup__input_description');//
+let nameInput = popupForm.querySelector('.popup__input_type_name');//
+let descInput = popupForm.querySelector('.popup__input_type_description');//
 let profileName = document.querySelector('.profile__name');//
 let profileDesc = document.querySelector('.profile__description');//
 
