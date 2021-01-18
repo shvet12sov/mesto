@@ -7,6 +7,33 @@ let descInput = popupForm.querySelector('.popup__input_type_description');//
 let profileName = document.querySelector('.profile__name');//
 let profileDesc = document.querySelector('.profile__description');//
 
+const initialCards = [
+  {
+    name: 'Лос-Анджелес',
+    link: './images/places/losangeles.jpg'
+  },
+  {
+    name: 'Бали',
+    link: './images/places/bali_templ.jpg'
+  },
+  {
+    name: 'Япония',
+    link: './images/places/japan.jpg'
+  },
+  {
+    name: 'Каньон',
+    link: './images/places/canyon.jpg'
+  },
+  {
+    name: 'Рио-де-Жанейро',
+    link: './images/places/rio.jpg'
+  },
+  {
+    name: 'Рим',
+    link: './images/places/rome.jpg'
+  }
+];
+
 let popupOpen = () => {
   popup.classList.add('popup_opened');
   profileInfoInput();
@@ -38,3 +65,20 @@ popup.addEventListener('click', (event) => {
   }
 })
 
+const addPlaces = () => {
+
+  const cardTemp = document.querySelector('.card-template').content;
+  const placesElement = document.querySelector('.places__items');
+
+  initialCards.forEach((item) => {
+    const cardElement = cardTemp.cloneNode(true);
+    cardElement.querySelector('.places__image').src = item.link;
+    cardElement.querySelector('.places__image').alt = item.name;
+    cardElement.querySelector('.places__name').textContent = item.name;
+
+    placesElement.append(cardElement);
+  });
+
+}
+
+addPlaces();
