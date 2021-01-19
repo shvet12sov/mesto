@@ -19,9 +19,12 @@ const popupFormAdd = popupAddPlace.querySelector('.popup__container')
 let nameInput = popupFormSave.querySelector('.popup__input_type_name'); // Инпут имени
 let descInput = popupFormSave.querySelector('.popup__input_type_description'); // Инпут описания профиля
 
+const placeNameInput = popupFormAdd.querySelector('.popup__input_type_name'); // Инпут названия места
+const placeLinkInput = popupFormAdd.querySelector('.popup__input_type_link'); // Инпут для ссылка на фотографию места
+
 //Элементы для замены в профиле
-let profileName = document.querySelector('.profile__name'); //
-let profileDesc = document.querySelector('.profile__description'); //
+let profileName = document.querySelector('.profile__name');
+let profileDesc = document.querySelector('.profile__description');
 
 // Массив с первоначальными местами
 const initialCards = [
@@ -88,12 +91,30 @@ let profileInfoInput = () => {
 }
 
 // Функция замены данных в профиле из инпутов попапа
-let handleSumbitForm = (evt, popupElem) => {
+let handleSumbitForm = (event) => {
 
-  evt.preventDefault();
+  event.preventDefault();
   profileName.textContent = nameInput.value;
   profileDesc.textContent = descInput.value;
   popupClose(popup);
+}
+
+const addPlace = (event) => {
+  event.preventDefault();
+
+  const cardTemp = document.querySelector('.card-template').content;
+  const placesElement = document.querySelector('.places__items');
+  const cardElement = cardTemp.cloneNode(true);
+
+  cardElement.querySelector('.places__image').src = placeLinkInput.value;
+  cardElement.querySelector('.places__image').alt = placeNameInput.value;
+  cardElement.querySelector('.places__name').textContent = placeNameInput.value;
+
+  placesElement.prepend(cardElement);
+  popupClose(popupAddPlace);
+
+  placeLinkInput.value = '';
+  placeNameInput.value = '';
 }
 
 // Колбэки
@@ -104,6 +125,8 @@ addPlaceButton.addEventListener('click', () => popupOpen(popupAddPlace));
 closeAddPlaceButton.addEventListener('click', () => popupClose(popupAddPlace));
 
 popupFormSave.addEventListener('submit', handleSumbitForm);
+popupFormAdd.addEventListener('submit', addPlace);
+
 
 popup.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) {
