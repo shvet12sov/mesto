@@ -1,6 +1,10 @@
+// Убираем скролл
+const body = document.querySelector('.body');
+
 // Находим попапы
 let popup = document.querySelector('.popup'); // попап изменение информация профиля
 let popupAddPlace = document.querySelector('.add-place'); // попап добавления места
+const popupImage = document.querySelector('.popup-image');
 
 // Находим кнопки в профиле
 let editButton = document.querySelector('.profile__button-edit'); // кнопка редактировать
@@ -9,6 +13,11 @@ const addPlaceButton = document.querySelector('.profile__button-add'); // кно
 // Назодим кнопки закрытия попапов
 let closeProfileButton = popup.querySelector('.popup__close'); // кнопка закрыть попап редактирования
 const closeAddPlaceButton = popupAddPlace.querySelector('.popup__close'); // Кнопка закрыть попап добавления места
+const closePopupImage = popupImage.querySelector('.popup-image__close');
+
+// Элементы попапов
+const popupImgPic = popupImage.querySelector('.popup-image__pic');
+const popupImgText = popupImage.querySelector('.popup-image__text');
 
 // Находим формы попапов
 let popupFormSave = popup.querySelector('.popup__container'); // форма в попап редактирования профиля
@@ -69,6 +78,13 @@ const placesInit = () => {
     cardElement.querySelector('.places__remove').addEventListener('click', (evt) => {
       evt.target.parentElement.remove();
     });
+    cardElement.querySelector('.places__image').addEventListener('click', (evt) => {
+      popupOpen(popupImage);
+      popupImgPic.src = evt.target.src;
+      popupImgPic.alt = evt.target.alt;
+      popupImgText.textContent = evt.target.alt;
+      console.log('click');
+    });
 
     placesElement.append(cardElement);
   });
@@ -80,12 +96,18 @@ placesInit();
 // Функция открытия попапа
 let popupOpen = (elem) => {
   elem.classList.add('popup_opened');
-  profileInfoInput();
+  elem.classList.remove('popup_closed');
+  body.classList.add('body_noscroll');
+  if(elem === popup){
+    profileInfoInput();
+  }
 }
 
 // Функция закрытия попапа
 let popupClose = (elem) => {
   elem.classList.remove('popup_opened');
+  elem.classList.add('popup_closed');
+  body.classList.remove('body_noscroll');
 }
 
 // Функция добавлениия данных в попап редактирования профиля
@@ -102,6 +124,12 @@ let handleSumbitForm = (evt) => {
   profileDesc.textContent = descInput.value;
   popupClose(popup);
 }
+
+// const placeImages = document.querySelectorAll('.places__image');
+
+// placeImages.forEach((item) => {
+//   item.addEventListener('click', console.log(item));
+// });
 
 const addPlace = (evt) => {
   evt.preventDefault();
@@ -120,6 +148,7 @@ const addPlace = (evt) => {
     evt.target.parentElement.remove();
   });
 
+
   placesElement.prepend(cardElement);
   popupClose(popupAddPlace);
 
@@ -133,6 +162,8 @@ closeProfileButton.addEventListener('click', () => popupClose(popup));
 
 addPlaceButton.addEventListener('click', () => popupOpen(popupAddPlace));
 closeAddPlaceButton.addEventListener('click', () => popupClose(popupAddPlace));
+
+closePopupImage.addEventListener('click', () => popupClose(popupImage));
 
 popupFormSave.addEventListener('submit', handleSumbitForm);
 popupFormAdd.addEventListener('submit', addPlace);
