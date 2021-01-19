@@ -79,11 +79,10 @@ const placesInit = () => {
       evt.target.parentElement.remove();
     });
     cardElement.querySelector('.places__image').addEventListener('click', (evt) => {
-      popupOpen(popupImage);
       popupImgPic.src = evt.target.src;
       popupImgPic.alt = evt.target.alt;
       popupImgText.textContent = evt.target.alt;
-      console.log('click');
+      popupOpen(popupImage);
     });
 
     placesElement.append(cardElement);
@@ -146,6 +145,12 @@ const addPlace = (evt) => {
   });
   cardElement.querySelector('.places__remove').addEventListener('click', (evt) => {
     evt.target.parentElement.remove();
+  });
+  cardElement.querySelector('.places__image').addEventListener('click', (evt) => {
+    popupImgPic.src = evt.target.src;
+    popupImgPic.alt = evt.target.alt;
+    popupImgText.textContent = evt.target.alt;
+    popupOpen(popupImage);
   });
 
 

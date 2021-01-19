@@ -8,3 +8,27 @@
 .places__image:hover {
   cursor: pointer;
 }
+
+
+.profile__edit-button {
+  margin-left: 18px;
+  min-width: 25px;
+  height: 25px;
+  background-color: #000;
+  background-image: url(../../../images/Edit-Button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+.profile__button-edit {
+  min-width: 24px;
+  height: 24px;
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  background-image: url(../../../images/profile-button-edit.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
