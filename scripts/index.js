@@ -1,12 +1,29 @@
-let popup = document.querySelector('.popup');//
-let editButton = document.querySelector('.profile__button-edit');//
-let closeProfileButton = popup.querySelector('.popup__close');//
-let popupForm = popup.querySelector('.popup__container');
-let nameInput = popupForm.querySelector('.popup__input_type_name');//
-let descInput = popupForm.querySelector('.popup__input_type_description');//
-let profileName = document.querySelector('.profile__name');//
-let profileDesc = document.querySelector('.profile__description');//
+// Находим попапы
+let popup = document.querySelector('.popup'); // попап изменение информация профиля
+let popupAddPlace = document.querySelector('.add-place'); // попап добавления места
 
+// Находим кнопки в профиле
+let editButton = document.querySelector('.profile__button-edit'); // кнопка редактировать
+const addPlaceButton = document.querySelector('.profile__button-add'); // кнопка добавить место
+
+// Назодим кнопки закрытия попапов
+let closeProfileButton = popup.querySelector('.popup__close'); // кнопка закрыть попап редактирования
+const closeAddPlaceButton = popupAddPlace.querySelector('.popup__close'); // Кнопка закрыть попап добавления места
+
+
+// Находим формы попапов
+let popupFormSave = popup.querySelector('.popup__container'); // форма в попап редактирования профиля
+const popupFormAdd = popupAddPlace.querySelector('.popup__container')
+
+// Находим инпуты
+let nameInput = popupFormSave.querySelector('.popup__input_type_name'); // Инпут имени
+let descInput = popupFormSave.querySelector('.popup__input_type_description'); // Инпут описания профиля
+
+//Элементы для замены в профиле
+let profileName = document.querySelector('.profile__name'); //
+let profileDesc = document.querySelector('.profile__description'); //
+
+// Массив с первоначальными местами
 const initialCards = [
   {
     name: 'Лос-Анджелес',
@@ -34,38 +51,7 @@ const initialCards = [
   }
 ];
 
-let popupOpen = () => {
-  popup.classList.add('popup_opened');
-  profileInfoInput();
-}
-
-let popupClose = () => {
-  popup.classList.remove('popup_opened')
-}
-
-let profileInfoInput = () => {
-  nameInput.value = profileName.textContent;
-  descInput.value = profileDesc.textContent;
-}
-
-let handleSumbitForm = (evt) => {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileDesc.textContent = descInput.value;
-  popupClose();
-}
-
-editButton.addEventListener('click', popupOpen);
-closeProfileButton.addEventListener('click', popupClose);
-popupForm.addEventListener('submit', handleSumbitForm);
-
-popup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {
-    popupClose();
-  }
-})
-
-const addPlaces = () => {
+const placesInit = () => {
 
   const cardTemp = document.querySelector('.card-template').content;
   const placesElement = document.querySelector('.places__items');
@@ -81,4 +67,50 @@ const addPlaces = () => {
 
 }
 
-addPlaces();
+placesInit();
+
+// Функция открытия попапа
+let popupOpen = (elem) => {
+  elem.classList.add('popup_opened');
+  profileInfoInput();
+  console.log('tyt');
+}
+
+// Функция закрытия попапа
+let popupClose = (elem) => {
+  elem.classList.remove('popup_opened');
+}
+
+// Функция добавлениия данных в попап редактирования профиля
+let profileInfoInput = () => {
+  nameInput.value = profileName.textContent;
+  descInput.value = profileDesc.textContent;
+}
+
+// Функция замены данных в профиле из инпутов попапа
+let handleSumbitForm = (evt, popupElem) => {
+
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileDesc.textContent = descInput.value;
+  popupClose(popup);
+}
+
+// Колбэки
+editButton.addEventListener('click', () => popupOpen(popup));
+closeProfileButton.addEventListener('click', () => popupClose(popup));
+
+addPlaceButton.addEventListener('click', () => popupOpen(popupAddPlace));
+closeAddPlaceButton.addEventListener('click', () => popupClose(popupAddPlace));
+
+popupFormSave.addEventListener('submit', handleSumbitForm);
+
+popup.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) {
+    popupClose(popup);
+  }
+});
+
+
+
+
