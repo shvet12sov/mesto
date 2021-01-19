@@ -10,6 +10,7 @@
   background-color: transparent;
   outline: 0;
   border: 0;
+  padding: 0;
 }
 
 .places__remove:hover {
