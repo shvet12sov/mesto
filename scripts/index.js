@@ -65,7 +65,9 @@ const placesInit = () => {
     cardElement.querySelector('.places__name').textContent = item.name;
     cardElement.querySelector('.places__like').addEventListener('click', function (evt) {
       evt.target.classList.toggle('places__like_color_black');
-      console.log('click')
+    });
+    cardElement.querySelector('.places__remove').addEventListener('click', (evt) => {
+      evt.target.parentElement.remove();
     });
 
     placesElement.append(cardElement);
@@ -79,7 +81,6 @@ placesInit();
 let popupOpen = (elem) => {
   elem.classList.add('popup_opened');
   profileInfoInput();
-  console.log('tyt');
 }
 
 // Функция закрытия попапа
@@ -94,16 +95,16 @@ let profileInfoInput = () => {
 }
 
 // Функция замены данных в профиле из инпутов попапа
-let handleSumbitForm = (event) => {
+let handleSumbitForm = (evt) => {
 
-  event.preventDefault();
+  evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDesc.textContent = descInput.value;
   popupClose(popup);
 }
 
-const addPlace = (event) => {
-  event.preventDefault();
+const addPlace = (evt) => {
+  evt.preventDefault();
 
   const cardTemp = document.querySelector('.card-template').content;
   const placesElement = document.querySelector('.places__items');
@@ -114,7 +115,9 @@ const addPlace = (event) => {
   cardElement.querySelector('.places__name').textContent = placeNameInput.value;
   cardElement.querySelector('.places__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('places__like_color_black');
-    console.log('click')
+  });
+  cardElement.querySelector('.places__remove').addEventListener('click', (evt) => {
+    evt.target.parentElement.remove();
   });
 
   placesElement.prepend(cardElement);
@@ -135,8 +138,8 @@ popupFormSave.addEventListener('submit', handleSumbitForm);
 popupFormAdd.addEventListener('submit', addPlace);
 
 
-popup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {
+popup.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
     popupClose(popup);
   }
 });

@@ -1,4 +1,5 @@
 .places__item {
+  position: relative;
   width: 282px;
   background-color: #ffffff;
   margin: 0;
