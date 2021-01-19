@@ -10,7 +10,6 @@ const addPlaceButton = document.querySelector('.profile__button-add'); // кно
 let closeProfileButton = popup.querySelector('.popup__close'); // кнопка закрыть попап редактирования
 const closeAddPlaceButton = popupAddPlace.querySelector('.popup__close'); // Кнопка закрыть попап добавления места
 
-
 // Находим формы попапов
 let popupFormSave = popup.querySelector('.popup__container'); // форма в попап редактирования профиля
 const popupFormAdd = popupAddPlace.querySelector('.popup__container')
@@ -64,6 +63,10 @@ const placesInit = () => {
     cardElement.querySelector('.places__image').src = item.link;
     cardElement.querySelector('.places__image').alt = item.name;
     cardElement.querySelector('.places__name').textContent = item.name;
+    cardElement.querySelector('.places__like').addEventListener('click', function (evt) {
+      evt.target.classList.toggle('places__like_color_black');
+      console.log('click')
+    });
 
     placesElement.append(cardElement);
   });
@@ -109,6 +112,10 @@ const addPlace = (event) => {
   cardElement.querySelector('.places__image').src = placeLinkInput.value;
   cardElement.querySelector('.places__image').alt = placeNameInput.value;
   cardElement.querySelector('.places__name').textContent = placeNameInput.value;
+  cardElement.querySelector('.places__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('places__like_color_black');
+    console.log('click')
+  });
 
   placesElement.prepend(cardElement);
   popupClose(popupAddPlace);
@@ -133,7 +140,3 @@ popup.addEventListener('click', (event) => {
     popupClose(popup);
   }
 });
-
-
-
-
